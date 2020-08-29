@@ -11,6 +11,7 @@ FLUTTER_VERS=`$FLUTTER --version | head -1`
 echo "== FLUTTER_VERS: $FLUTTER_VERS"
 
 set -x;
+$FLUTTER pub get;
 $FLUTTER analyze;
 $FLUTTER format --dry-run --set-exit-if-changed .;
 $FLUTTER test
