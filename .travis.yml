@@ -16,7 +16,7 @@ cache:
     - $HOME/shared/.pub-cache
 
 before_script:
-  - git clone https://github.com/flutter/flutter.git -b $FLUTTER_BRANCH
+  - git clone https://github.com/flutter/flutter.git -b stable
   - ./flutter/bin/flutter doctor
   - chmod +x travis.sh
 
