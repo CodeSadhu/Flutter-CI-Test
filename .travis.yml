@@ -15,13 +15,21 @@ cache:
   directories:
     - $HOME/shared/.pub-cache
 
+git:
+  depth: 2
+env:
+  global:
+    - FLUTTER_BIN=$PWD/flutter/bin
+    - FLUTTER=$FLUTTER_BIN/flutter
+  matrix:
+    - FLUTTER_BRANCH=stable
+    - FLUTTER_BRANCH=dev
+
+matrix:
+  allow_failures:
+    - env: FLUTTER_BRANCH=dev
+
 before_script:
-  - git clone https://github.com/flutter/flutter.git -b stable
+  - git clone https://github.com/flutter/flutter.git -b $FLUTTER_BRANCH
   - ./flutter/bin/flutter doctor
   - chmod +x travis.sh
-
-script: ./travis.sh
-
-# Only run Travis jobs for named branches (to avoid double builds for each PR)
-branches:
-  only: [master, /^\d\.x$/, /^\d-dev$/, /travis-build/]
